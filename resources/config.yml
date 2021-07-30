@@ -1,0 +1,52 @@
+---
+# KygekLastPosition plugin configuration file
+# Plugin by KygekTeam
+
+##### COMMAND SETTINGS #####
+# NOTE: Requires server restart to be applied
+command:
+  # Change the command description that will be shown in help pages and command suggestions
+  # Leave empty to use the default command description
+  description: ""
+  # Add command aliases for /lastposition command (Leave empty if you don't want to add command aliases)
+  # Do not use "/" in front of the commands!
+  aliases: []
+#############################
+
+##### MESSAGE SETTINGS ######
+# Use & as text formatting codes
+message:
+  # Whether to show KygekLastPosition prefix
+  show-prefix: true
+  # Whether to use default coloring for information and warning messages
+  # Default: Information = Green; Warning = Yellow
+  use-default-color: true
+  # Message sent to the sender if the sender doesn't have permission
+  no-permission:
+    self: "You don't have permission to use this command for teleporting yourself"
+    other: "You don't have permission to use this command for teleporting other players"
+  # Message sent to the sender if requested player not found
+  player-not-found: "Cannot find the requested player"
+  # Message sent to the sender if sender/target haven't been teleported before player doesn't have any remaining teleport history
+  no-teleport-history:
+    self: "Unable to teleport you back because you haven't been teleported before or you don't have any remaining teleport history"
+    # Use $target to get target name
+    other: "Unable to teleport $target back because $target haven't been teleported before or doesn't have any remaining teleport history"
+  # Message sent if /lastposition command executed successfully
+  success:
+    self: "Successfully teleported you back to the position before the last teleport"
+    other:
+      # Use $target to get target name
+      sender: "Successfully teleported $target back to the position before the last teleport"
+      # Use $sender to get sender name
+      target: "You have been telepoted back to the position before the last teleport by $sender"
+#############################
+
+# Whether to check for plugin updates (Recommended)
+check-updates: true
+
+##### DANGER ZONE #####
+# Do not change this (Only for internal use)!
+config-version: "1.0"
+#######################
+...

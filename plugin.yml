@@ -1,0 +1,31 @@
+---
+# Teleport back to the position before the last teleport
+# Copyright (C) 2021 KygekTeam
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# he Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+
+name: KygekLastPosition
+version: 1.0.0
+description: Teleport back to the position before the last teleport
+author: KygekTeam
+website: "https://github.com/KygekTeam/KygekLastPosition"
+api: 3.0.0
+extensions:
+  Core: ">=8.0"
+main: KygekTeam\KygekLastPosition\LastPosition
+
+permissions:
+  kygeklastposition.cmd:
+    description: Permission to use /lastposition command
+    default: op
+    children:
+      kygeklastposition.cmd.self:
+        description: Permission to use /lastposition command to teleport self
+        default: op
+      kygeklastposition.cmd.other:
+        description: Permission to use /lastposition command to teleport other
+        default: op
+...
