@@ -6,6 +6,10 @@
 
 A PocketMine-MP plugin to teleport back to the position before the last teleport.
 
+## ❓ Why This Plugin Exists
+
+Sometimes you teleported to a location and you want to go back to the location before you got teleported. It takes time to go back to the location before you got teleported, so you might thinking of a plugin that could teleport you to the location before you got teleported. That's why we made KygekLastPosition plugin.
+
 ## ✅ Features
 
 - Teleport yourself or other players back to the position before the last teleport
