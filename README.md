@@ -52,3 +52,5 @@ KygekLastPosition is a plugin by KygekTeam and licensed under **GPL-3.0**.
 - Join our Discord server [here](https://discord.gg/CXtqUZv) for latest news and support from KygekTeam.
 - If you found bugs or want to give suggestions, please visit [here](https://github.com/KygekTeam/KygekLastPosition/issues) or join our Discord server.
 - We accept all contributions! If you want to contribute please make a pull request in [here](https://github.com/KygekTeam/KygekLastPosition/pulls).
+
+<a href="https://www.freepnglogos.com/pics/pin">Pin icon from freepnglogos.com</a>
