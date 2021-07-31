@@ -47,6 +47,7 @@ class LastPosition extends PluginBase implements Listener {
     private bool $pluginTeleports = false;
 
     public function onEnable() {
+        $this->saveDefaultConfig();
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
         $this->getServer()->getCommandMap()->register($this->getName(), new Command(self::COMMAND, $this));
 
