@@ -1,5 +1,6 @@
 # KygekLastPosition
 
+[![Poggit](https://poggit.pmmp.io/shield.dl.total/KygekLastPosition)](https://poggit.pmmp.io/p/KygekLastPosition)
 [![Discord](https://img.shields.io/discord/735439472992321587.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/CXtqUZv)
 
 > **WARNING:** This plugin will only work on PocketMine-MP servers using PHP 8.0 or newer.
