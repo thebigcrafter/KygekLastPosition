@@ -17,10 +17,10 @@ namespace KygekTeam\KygekLastPosition;
 use KygekTeam\KtpmplCfs\KtpmplCfs;
 use pocketmine\event\entity\EntityTeleportEvent;
 use pocketmine\event\Listener;
-use pocketmine\level\Position;
-use pocketmine\Player;
+use pocketmine\player\Player;
 use pocketmine\plugin\PluginBase;
 use pocketmine\utils\TextFormat as TF;
+use pocketmine\world\Position;
 
 class LastPosition extends PluginBase implements Listener {
 
@@ -46,12 +46,12 @@ class LastPosition extends PluginBase implements Listener {
     // When set to 'true' by this plugin, this plugin prevents teleport location to be stored by this plugin when teleporting back
     private bool $pluginTeleports = false;
 
-    public function onEnable() {
+    protected function onEnable() : void {
         $this->saveDefaultConfig();
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
         $this->getServer()->getCommandMap()->register($this->getName(), new Command(self::COMMAND, $this));
 
-        KtpmplCfs::checkConfig($this, "1.0");
+        KtpmplCfs::checkConfig($this, "2.0");
         KtpmplCfs::checkUpdates($this);
     }
 
