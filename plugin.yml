@@ -8,11 +8,11 @@
 # (at your option) any later version.
 
 name: KygekLastPosition
-version: 1.0.0
+version: 2.0.0-BETA
 description: Teleport back to the position before the last teleport
 author: KygekTeam
 website: "https://github.com/KygekTeam/KygekLastPosition"
-api: 3.18.0
+api: 4.0.0
 extensions:
   Core: ">=8.0"
 main: KygekTeam\KygekLastPosition\LastPosition
