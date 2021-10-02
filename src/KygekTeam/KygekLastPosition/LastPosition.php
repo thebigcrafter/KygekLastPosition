@@ -24,6 +24,8 @@ use pocketmine\world\Position;
 
 class LastPosition extends PluginBase implements Listener {
 
+    private const IS_DEV = true;
+
     public const PREFIX = TF::AQUA . "[KygekLastPosition] " . TF::RESET;
     public const INFO = TF::GREEN;
     public const WARNING = TF::YELLOW;
@@ -47,6 +49,11 @@ class LastPosition extends PluginBase implements Listener {
     private bool $pluginTeleports = false;
 
     protected function onEnable() : void {
+        /** @phpstan-ignore-next-line */
+        if (self::IS_DEV) {
+            $this->getLogger()->warning("This plugin is running on a development version. There might be some major bugs. If you found one, please submit an issue in https://github.com/KygekTeam/KygekLastPosition/issues.");
+        }
+
         $this->saveDefaultConfig();
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
         $this->getServer()->getCommandMap()->register($this->getName(), new Command(self::COMMAND, $this));
