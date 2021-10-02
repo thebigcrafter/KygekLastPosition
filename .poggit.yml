@@ -2,10 +2,14 @@
 build-by-default: true
 branches:
 - main
+- pm4
 projects:
   KygekLastPosition:
     path: ""
     libs:
     - src: KygekTeam/ktpmpl-cfs/ktpmpl-cfs
-      version: ^1.0
+      version: ^3.0
+      branch: pm4-updatenotifier
+    lint:
+      phpstan: false
 ...
