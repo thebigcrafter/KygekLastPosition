@@ -21,11 +21,10 @@ permissions:
   kygeklastposition.cmd:
     description: Permission to use /lastposition command
     default: op
-    children:
-      kygeklastposition.cmd.self:
-        description: Permission to use /lastposition command to teleport self
-        default: op
-      kygeklastposition.cmd.other:
-        description: Permission to use /lastposition command to teleport other
-        default: op
+  kygeklastposition.cmd.self:
+    description: Permission to use /lastposition command to teleport self
+    default: op
+  kygeklastposition.cmd.other:
+    description: Permission to use /lastposition command to teleport other
+    default: op
 ...

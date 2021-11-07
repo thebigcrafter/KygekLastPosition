@@ -49,7 +49,7 @@ class Command extends PMCommand {
                 return;
             }
 
-            if (!$sender->hasPermission(self::PERMISSION_SELF)) {
+            if (!$sender->hasPermission(self::PERMISSION_SELF) && !$sender->hasPermission(self::PERMISSION_ROOT)) {
                 $sender->sendMessage($plugin->getMessage("no-permission.self"));
                 return;
             }
@@ -63,7 +63,7 @@ class Command extends PMCommand {
             return;
         }
 
-        if (!$sender->hasPermission(self::PERMISSION_OTHER)) {
+        if (!$sender->hasPermission(self::PERMISSION_OTHER) && !$sender->hasPermission(self::PERMISSION_ROOT)) {
             $sender->sendMessage($plugin->getMessage("no-permission.other"));
             return;
         }
