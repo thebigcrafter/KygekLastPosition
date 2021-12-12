@@ -17,8 +17,9 @@ namespace KygekTeam\KygekLastPosition;
 use pocketmine\command\Command as PMCommand;
 use pocketmine\command\CommandSender;
 use pocketmine\player\Player;
+use pocketmine\plugin\PluginOwned;
 
-class Command extends PMCommand {
+class Command extends PMCommand implements PluginOwned {
 
     private const PERMISSION_ROOT = "kygeklastposition.cmd";
 
@@ -35,12 +36,8 @@ class Command extends PMCommand {
         $this->plugin = $owner;
     }
 
-    private function getPlugin() : LastPosition {
-        return $this->plugin;
-    }
-
     public function execute(CommandSender $sender, string $commandLabel, array $args) {
-        $plugin = $this->getPlugin();
+        $plugin = $this->getOwningPlugin();
         $plugin->getConfig()->reload();
 
         if (!isset($args[0])) {
@@ -81,6 +78,10 @@ class Command extends PMCommand {
 
         $sender->sendMessage($plugin->getMessage("success.other.sender", ["target" => $target->getName()]));
         $target->sendMessage($plugin->getMessage("success.other.target", ["sender" => $sender->getName()]));
+    }
+
+    public function getOwningPlugin() : LastPosition {
+        return $this->plugin;
     }
 
 }
