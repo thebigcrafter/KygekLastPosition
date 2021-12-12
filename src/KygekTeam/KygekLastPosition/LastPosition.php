@@ -100,9 +100,7 @@ class LastPosition extends PluginBase implements Listener {
 
         $config  = $this->getConfig();
         $prefix  = $config->getNested("message.show-prefix", true) ? self::PREFIX : "";
-        $color   = $config->getNested("message.use-default-color", true) ?
-            /** @phpstan-ignore-next-line */
-            (str_starts_with($key, "success") ? self::INFO : self::WARNING) : "";
+        $color   = $config->getNested("message.use-default-color", true) ? (str_starts_with($key, "success") ? self::INFO : self::WARNING) : "";
         $message = $config->getNested("message.$key", self::DEFAULT_MESSAGES[$key]);
 
         $message = $prefix . $color . TF::Colorize($message);
