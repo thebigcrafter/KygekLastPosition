@@ -49,17 +49,19 @@ class LastPosition extends PluginBase implements Listener {
     private bool $pluginTeleports = false;
 
     protected function onEnable() : void {
+        $this->saveDefaultConfig();
+        $ktpmplCfs = new KtpmplCfs($this);
+
         /** @phpstan-ignore-next-line */
         if (self::IS_DEV) {
-            $this->getLogger()->warning("This plugin is running on a development version. There might be some major bugs. If you found one, please submit an issue in https://github.com/KygekTeam/KygekLastPosition/issues.");
+            $ktpmplCfs->warnDevelopmentVersion();
         }
 
-        $this->saveDefaultConfig();
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
         $this->getServer()->getCommandMap()->register($this->getName(), new Command(self::COMMAND, $this));
 
-        KtpmplCfs::checkConfig($this, "2.1");
-        KtpmplCfs::checkUpdates($this);
+        $ktpmplCfs->checkConfig("2.1");
+        $ktpmplCfs->checkUpdates();
     }
 
     /**
