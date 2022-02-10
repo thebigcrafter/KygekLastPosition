@@ -2,7 +2,7 @@
 
 /*
  * Teleport back to the position before the last teleport
- * Copyright (C) 2021 KygekTeam
+ * Copyright (C) 2021-2022 KygekTeam
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
