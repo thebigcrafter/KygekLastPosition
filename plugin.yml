@@ -10,7 +10,7 @@
 name: KygekLastPosition
 version: 2.1.0
 description: Teleport back to the position before the last teleport
-author: KygekTeam
+authors: [KygekTeam, thebigcrafter]
 website: "https://github.com/KygekTeam/KygekLastPosition"
 api: 4.0.0
 main: KygekTeam\KygekLastPosition\LastPosition
