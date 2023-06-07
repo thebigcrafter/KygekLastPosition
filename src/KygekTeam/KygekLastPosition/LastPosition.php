@@ -31,8 +31,6 @@ use function str_starts_with;
 
 class LastPosition extends PluginBase implements Listener {
 
-	private const IS_DEV = false;
-
 	public const PREFIX = TF::AQUA . "[KygekLastPosition] " . TF::RESET;
 	public const INFO = TF::GREEN;
 	public const WARNING = TF::YELLOW;
