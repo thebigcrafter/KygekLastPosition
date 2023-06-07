@@ -2,7 +2,7 @@
 
 /*
  * Teleport back to the position before the last teleport
- * Copyright (C) 2021 KygekTeam
+ * Copyright (C) 2021-2022 KygekTeam
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -14,30 +14,30 @@ declare(strict_types=1);
 
 namespace KygekTeam\KygekLastPosition;
 
+use pocketmine\command\Command as PMCommand;
 use pocketmine\command\CommandSender;
-use pocketmine\command\PluginCommand;
-use pocketmine\Player;
-use pocketmine\plugin\Plugin;
+use pocketmine\player\Player;
+use pocketmine\plugin\PluginOwned;
 
-class Command extends PluginCommand {
+class Command extends PMCommand implements PluginOwned {
 
     private const PERMISSION_ROOT = "kygeklastposition.cmd";
 
     private const PERMISSION_SELF = "kygeklastposition.cmd.self";
     private const PERMISSION_OTHER = "kygeklastposition.cmd.other";
 
-    public function __construct(string $name, Plugin $owner) {
-        parent::__construct($name, $owner);
+    private LastPosition $plugin;
+
+    public function __construct(string $name, LastPosition $owner) {
         $desc = $owner->getConfig()->getNested("command.description", "");
-        $this->setDescription(empty($desc) ? "Teleport back to the position before the last teleport" : $desc);
-        $this->setUsage("/lastposition [player]");
+        $desc = empty($desc) ? "Teleport back to the position before the last teleport" : $desc;
+        parent::__construct($name, $desc, "/lastposition [player]", $owner->getConfig()->getNested("command.aliases", []));
         $this->setPermission(self::PERMISSION_ROOT);
-        $this->setAliases($owner->getConfig()->getNested("command.aliases", []));
+        $this->plugin = $owner;
     }
 
     public function execute(CommandSender $sender, string $commandLabel, array $args) {
-        /** @var LastPosition $plugin */
-        $plugin = $this->getPlugin();
+        $plugin = $this->getOwningPlugin();
         $plugin->getConfig()->reload();
 
         if (!isset($args[0])) {
@@ -46,7 +46,7 @@ class Command extends PluginCommand {
                 return;
             }
 
-            if (!$sender->hasPermission(self::PERMISSION_SELF)) {
+            if (!$sender->hasPermission(self::PERMISSION_SELF) && !$sender->hasPermission(self::PERMISSION_ROOT)) {
                 $sender->sendMessage($plugin->getMessage("no-permission.self"));
                 return;
             }
@@ -60,12 +60,12 @@ class Command extends PluginCommand {
             return;
         }
 
-        if (!$sender->hasPermission(self::PERMISSION_OTHER)) {
+        if (!$sender->hasPermission(self::PERMISSION_OTHER) && !$sender->hasPermission(self::PERMISSION_ROOT)) {
             $sender->sendMessage($plugin->getMessage("no-permission.other"));
             return;
         }
 
-        $target = $plugin->getServer()->getPlayer($args[0]);
+        $target = $plugin->getServer()->getPlayerByPrefix($args[0]);
         if ($target === null) {
             $sender->sendMessage($plugin->getMessage("player-not-found"));
             return;
@@ -78,6 +78,10 @@ class Command extends PluginCommand {
 
         $sender->sendMessage($plugin->getMessage("success.other.sender", ["target" => $target->getName()]));
         $target->sendMessage($plugin->getMessage("success.other.target", ["sender" => $sender->getName()]));
+    }
+
+    public function getOwningPlugin() : LastPosition {
+        return $this->plugin;
     }
 
 }

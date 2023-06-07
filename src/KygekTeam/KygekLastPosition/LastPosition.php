@@ -2,7 +2,7 @@
 
 /*
  * Teleport back to the position before the last teleport
- * Copyright (C) 2021 KygekTeam
+ * Copyright (C) 2021-2022 KygekTeam
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,12 +17,14 @@ namespace KygekTeam\KygekLastPosition;
 use KygekTeam\KtpmplCfs\KtpmplCfs;
 use pocketmine\event\entity\EntityTeleportEvent;
 use pocketmine\event\Listener;
-use pocketmine\level\Position;
-use pocketmine\Player;
+use pocketmine\player\Player;
 use pocketmine\plugin\PluginBase;
 use pocketmine\utils\TextFormat as TF;
+use pocketmine\world\Position;
 
 class LastPosition extends PluginBase implements Listener {
+
+    private const IS_DEV = false;
 
     public const PREFIX = TF::AQUA . "[KygekLastPosition] " . TF::RESET;
     public const INFO = TF::GREEN;
@@ -46,13 +48,20 @@ class LastPosition extends PluginBase implements Listener {
     // When set to 'true' by this plugin, this plugin prevents teleport location to be stored by this plugin when teleporting back
     private bool $pluginTeleports = false;
 
-    public function onEnable() {
+    protected function onEnable() : void {
         $this->saveDefaultConfig();
+        $ktpmplCfs = new KtpmplCfs($this);
+
+        /** @phpstan-ignore-next-line */
+        if (self::IS_DEV) {
+            $ktpmplCfs->warnDevelopmentVersion();
+        }
+
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
         $this->getServer()->getCommandMap()->register($this->getName(), new Command(self::COMMAND, $this));
 
-        KtpmplCfs::checkConfig($this, "1.0");
-        KtpmplCfs::checkUpdates($this);
+        $ktpmplCfs->checkConfig("2.1");
+        $ktpmplCfs->checkUpdates();
     }
 
     /**
@@ -93,9 +102,7 @@ class LastPosition extends PluginBase implements Listener {
 
         $config  = $this->getConfig();
         $prefix  = $config->getNested("message.show-prefix", true) ? self::PREFIX : "";
-        $color   = $config->getNested("message.use-default-color", true) ?
-            /** @phpstan-ignore-next-line */
-            (str_starts_with($key, "success") ? self::INFO : self::WARNING) : "";
+        $color   = $config->getNested("message.use-default-color", true) ? (str_starts_with($key, "success") ? self::INFO : self::WARNING) : "";
         $message = $config->getNested("message.$key", self::DEFAULT_MESSAGES[$key]);
 
         $message = $prefix . $color . TF::Colorize($message);
