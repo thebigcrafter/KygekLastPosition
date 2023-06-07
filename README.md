@@ -41,4 +41,4 @@ A PocketMine-MP plugin to teleport back to the position before the last teleport
 
 # ⚖️ License
 
-Licensed under the [GNU General Public License v3.0 license](https://github.com/thebigcrafter/KygekLastPosition/blob/pm4/LICENSE).
+Licensed under the [GNU General Public License v3.0 license](https://github.com/thebigcrafter/KygekLastPosition/blob/main/LICENSE).
