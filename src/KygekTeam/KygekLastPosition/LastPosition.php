@@ -14,13 +14,14 @@ declare(strict_types=1);
 
 namespace KygekTeam\KygekLastPosition;
 
-use KygekTeam\KtpmplCfs\KtpmplCfs;
 use pocketmine\event\entity\EntityTeleportEvent;
 use pocketmine\event\Listener;
 use pocketmine\player\Player;
 use pocketmine\plugin\PluginBase;
 use pocketmine\utils\TextFormat as TF;
 use pocketmine\world\Position;
+use thebigcrafter\Hydrogen\HConfig;
+use thebigcrafter\Hydrogen\Hydrogen;
 
 class LastPosition extends PluginBase implements Listener {
 
@@ -50,18 +51,14 @@ class LastPosition extends PluginBase implements Listener {
 
     protected function onEnable() : void {
         $this->saveDefaultConfig();
-        $ktpmplCfs = new KtpmplCfs($this);
-
-        /** @phpstan-ignore-next-line */
-        if (self::IS_DEV) {
-            $ktpmplCfs->warnDevelopmentVersion();
-        }
 
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
         $this->getServer()->getCommandMap()->register($this->getName(), new Command(self::COMMAND, $this));
 
-        $ktpmplCfs->checkConfig("2.1");
-        $ktpmplCfs->checkUpdates();
+        if (HConfig::verifyConfigVersion($this->getConfig(), "2.1")) {
+			HConfig::resetConfig($this);
+		}
+		Hydrogen::checkForUpdates($this);
     }
 
     /**
