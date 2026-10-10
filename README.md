@@ -13,11 +13,11 @@ A PocketMine-MP plugin to teleport back to the position before the last teleport
 # 🧩 Features
 
 - Teleport yourself or other players back to the position before the last teleport
-- Customizeable messages in the configuration file
+- Customizable messages in the configuration file
   - Enable or disable the KygekLastPosition prefix and default coloring
   - The `&` symbol can be used as text formatting codes
-  - No need to restart server, changes are applied immediately as soon the `/lastposition` command gets executed
-- Configurable ommand description and aliases
+  - No need to restart the server; changes are applied immediately when the `/lastposition` command is executed
+- Configurable command description and aliases
 - Automatic plugin updates checker to notify you if a new version has been released on Poggit
 - Configuration file gets updated automatically when a newer configuration file is available
 - **For Developers:** API to teleport player back to the position before the last teleport (`KygekTeam\KygekLastPosition\LastPosition->teleport(Player $player)`)
