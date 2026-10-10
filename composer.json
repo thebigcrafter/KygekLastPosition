@@ -1,5 +1,17 @@
 {
+    "name": "thebigcrafter/kygek-last-position",
+    "description": "PocketMine-MP plugin for returning players to their previous teleport position",
+    "license": "GPL-3.0-only",
     "require-dev": {
-        "friendsofphp/php-cs-fixer": "^3.17"
+        "phpstan/phpstan": "^2.1",
+        "pocketmine/pocketmine-mp": "^5.44.3"
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "thebigcrafter\\Hydrogen\\": "tools/stubs/Hydrogen/"
+        }
+    },
+    "scripts": {
+        "analyse": "phpstan analyse -c phpstan.neon.dist"
     }
 }

@@ -48,7 +48,7 @@ class LastPosition extends PluginBase implements Listener {
 		"success.other.target" => "You have been telepoted back to the position before the last teleport by \$sender"
 	];
 
-	/** @var Position[][] */
+	/** @var array<string, list<Position>> */
 	private array $teleports = [];
 	// When set to 'true' by this plugin, this plugin prevents teleport location to be stored by this plugin when teleporting back
 	private bool $pluginTeleports = false;
@@ -68,12 +68,11 @@ class LastPosition extends PluginBase implements Listener {
 	/**
 	 * @priority MONITOR
 	 */
-	public function onTeleport(EntityTeleportEvent $event) {
+	public function onTeleport(EntityTeleportEvent $event) : void {
 		if ($event->isCancelled()) return;
 		if (!(($player = $event->getEntity()) instanceof Player)) return;
 		if ($this->pluginTeleports) return;
 
-		/** @var Player $player */
 		$this->teleports[$player->getName()][] = $event->getFrom();
 	}
 
@@ -88,12 +87,14 @@ class LastPosition extends PluginBase implements Listener {
 
 		/** @see LastPosition::$pluginTeleports */
 		$this->pluginTeleports = true;
-		$player->teleport(end($this->teleports[$player->getName()]));
+		$position = end($this->teleports[$player->getName()]);
+		$player->teleport($position);
 		$this->pluginTeleports = false;
 		array_pop($this->teleports[$player->getName()]);
 		return true;
 	}
 
+	/** @param array<string, string> $vars */
 	public function getMessage(string $key, array $vars = []) : string {
 		// Add '$' prefix to all keys in $vars
 		foreach ($vars as $var => $value) {
@@ -104,7 +105,11 @@ class LastPosition extends PluginBase implements Listener {
 		$config = $this->getConfig();
 		$prefix = $config->getNested("message.show-prefix", true) ? self::PREFIX : "";
 		$color = $config->getNested("message.use-default-color", true) ? (str_starts_with($key, "success") ? self::INFO : self::WARNING) : "";
-		$message = $config->getNested("message.$key", self::DEFAULT_MESSAGES[$key]);
+		$defaultMessage = self::DEFAULT_MESSAGES[$key] ?? "";
+		$message = $config->getNested("message.$key", $defaultMessage);
+		if (!is_string($message)) {
+			$message = $defaultMessage;
+		}
 
 		$message = $prefix . $color . TF::Colorize($message);
 		return str_ireplace(array_keys($vars), array_values($vars), $message);
