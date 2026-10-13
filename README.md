@@ -1,12 +1,12 @@
 <h1 align="center">KygekLastPosition</h1>
 
 <p align="center">
-<a href="https://poggit.pmmp.io/p/KygekLastPosition"><img src="https://poggit.pmmp.io/shield.dl.total/KygekLastPosition?style=for-the-badge" alt="Poggit downloads" /></a>
+<a href="https://github.com/thebigcrafter/KygekLastPosition/releases"><img src="https://img.shields.io/github/v/release/thebigcrafter/KygekLastPosition?style=for-the-badge" alt="GitHub release" /></a>
 <a href="https://github.com/thebigcrafter/KygekLastPosition/blob/main/LICENSE"><img src="https://img.shields.io/github/license/thebigcrafter/KygekLastPosition?style=for-the-badge" alt="License" /></a>
 <a href="https://discord.gg/PykBfE2TZ9"><img src="https://img.shields.io/discord/1087729577004122112?color=7289DA&label=Discord&logo=discord&style=for-the-badge" alt="Discord" /></a>
 </p>
 
-KygekLastPosition is a PocketMine-MP plugin that records player teleport locations and lets a player return to the position before the most recent teleport.
+KygekLastPosition is an Axolotl-PM plugin that records player teleport locations and lets a player return to the position before the most recent teleport.
 
 ## Features
 
@@ -20,14 +20,14 @@ Teleport history is not persisted to disk. Reloading or restarting the server cl
 
 ## Requirements
 
-- PocketMine-MP API 5.0.0
+- Axolotl-PM API 5.0.0
 - The [Hydrogen](https://github.com/thebigcrafter/Hydrogen) library, included by the consumer's Virion-compatible build configuration
 
 ## Installation
 
-1. Download the plugin PHAR from the [Poggit project page](https://poggit.pmmp.io/p/KygekLastPosition) or another trusted release source.
+1. Download the plugin PHAR from [GitHub Releases](https://github.com/thebigcrafter/KygekLastPosition/releases) or another trusted release source.
 2. Copy `KygekLastPosition.phar` into the server's `plugins` directory.
-3. Start or restart PocketMine-MP.
+3. Start or restart Axolotl-PM.
 
 The plugin registers `/lastposition` when it is enabled.
 
@@ -78,7 +78,7 @@ composer install
 composer run analyse
 ```
 
-The PHAR and runtime behavior must be verified by the consuming PocketMine-MP server and its build pipeline.
+The PHAR and runtime behavior must be verified by the consuming Axolotl-PM server and its build pipeline.
 
 ## Credits
 
