@@ -59,7 +59,7 @@ class LastPosition extends PluginBase implements Listener {
 		$this->getServer()->getPluginManager()->registerEvents($this, $this);
 		$this->getServer()->getCommandMap()->register($this->getName(), new Command(self::COMMAND, $this));
 
-		if (HConfig::verifyConfigVersion($this->getConfig(), "2.1")) {
+		if (HConfig::verifyConfigVersion($this->getConfig(), "2.1.4")) {
 			HConfig::resetConfig($this);
 		}
 		Hydrogen::checkForUpdates($this);
