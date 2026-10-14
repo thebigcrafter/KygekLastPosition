@@ -38,11 +38,11 @@ The plugin registers `/lastposition` when it is enabled.
 | `/lastposition` | Return yourself to the previous teleport position | `kygeklastposition.cmd.self` | `op` |
 | `/lastposition <player>` | Return another player to their previous teleport position | `kygeklastposition.cmd.other` | `op` |
 
-`kygeklastposition.cmd` grants both command operations. A sender using the player form must be able to resolve the target by name prefix. The command description and aliases can be changed in `resources/config.yml`; restart the server after changing those command settings.
+`kygeklastposition.cmd` grants both command operations. A sender using the player form must be able to resolve the target by name prefix. The command description and aliases can be changed in `plugin_data/KygekLastPosition/config.yml`; restart the server after changing those command settings.
 
 ## Configuration
 
-`resources/config.yml` controls:
+`plugin_data/KygekLastPosition/config.yml` controls:
 
 - The command description and aliases.
 - Whether messages include the `[KygekLastPosition]` prefix.
