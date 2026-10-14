@@ -42,10 +42,10 @@ class LastPosition extends PluginBase implements Listener {
 		"no-permission.other" => "You don't have permission to use this command for teleporting other players",
 		"player-not-found" => "Cannot find the requested player",
 		"no-teleport-history.self" => "Unable to teleport you back because you haven't been teleported before or you don't have any remaining teleport history",
-		"no-teleport-history.other" => "Unable to teleport \$target back because \$target haven't been teleported before or doesn't have any remaining teleport history",
+		"no-teleport-history.other" => "Unable to teleport \$target back because \$target hasn't been teleported before or doesn't have any remaining teleport history",
 		"success.self" => "Successfully teleported you back to the position before the last teleport",
 		"success.other.sender" => "Successfully teleported \$target back to the position before the last teleport",
-		"success.other.target" => "You have been telepoted back to the position before the last teleport by \$sender"
+		"success.other.target" => "You have been teleported back to the position before the last teleport by \$sender"
 	];
 
 	/** @var array<string, list<Position>> */
